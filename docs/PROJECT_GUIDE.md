@@ -110,8 +110,9 @@ AI-Powered-Climate Risk Intelligence Platform/
 ├── docs/                         # Documentation
 ├── requirements.txt              # Dependencies
 ├── README.md                     # Project overview
-├── Dockerfile                    # Docker configuration
-├── docker-compose.yml          # Docker Compose
+├── docker/                       # Docker configuration
+│   ├── Dockerfile
+│   └── docker-compose.yml
 └── .gitignore                   # Git ignore rules
 ```
 
@@ -311,7 +312,7 @@ streamlit run dashboard/app.py
 
 1. **Build Docker image**
 ```bash
-docker build -t climateguard-ai .
+docker build -f docker/Dockerfile -t climateguard-ai .
 ```
 
 2. **Run with Docker**
@@ -321,7 +322,7 @@ docker run -p 8501:8501 climateguard-ai
 
 3. **Run with Docker Compose**
 ```bash
-docker-compose up -d
+docker compose -f docker/docker-compose.yml up -d
 ```
 
 ### Streamlit Cloud Deployment
@@ -366,7 +367,7 @@ pip install matplotlib
 ```bash
 # Solution: Clear Docker cache and rebuild
 docker system prune -a
-docker build --no-cache -t climateguard-ai .
+docker build --no-cache -f docker/Dockerfile -t climateguard-ai .
 ```
 
 ---

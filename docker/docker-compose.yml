@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  climateguard:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: climateguard_ai
+    ports:
+      - "8501:8501"
+    volumes:
+      - ../data:/app/data
+      - ../trained_models:/app/trained_models
+      - ../reports:/app/reports
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
